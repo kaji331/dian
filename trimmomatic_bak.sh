@@ -1,0 +1,5 @@
+#!/bin/bash
+
+java -Xmx6G -jar /home/galaxy/command_pipelines/Trimmomatic-0.33/trimmomatic-0.33.jar PE -phred33 -threads 8 $1 $2 $(basename $1 .fastq.gz)\_paired\_1.fastq.gz $(basename $1 .fastq.gz)\_unpaired\_1.fastq.gz $(basename $2 .fastq.gz)\_paired\_2.fastq.gz $(basename $2 .fastq.gz)\_unpaired\_2.fastq.gz ILLUMINACLIP:/home/galaxy/command_pipelines/Trimmomatic-0.33/adapters/TruSeq3-PE-2.fa:2:30:10 MINLEN:80 LEADING:30 TRAILING:30 CROP:135 HEADCROP:5
+java -Xmx6G -jar /home/galaxy/command_pipelines/Trimmomatic-0.33/trimmomatic-0.33.jar PE -phred33 -threads 8 $(basename $1 .fastq.gz)\_paired\_1.fastq.gz $(basename $2 .fastq.gz)\_paired\_2.fastq.gz $(basename $1 .fastq.gz)\_trimmed.fastq.gz $(basename $1 .fastq.gz)unpaired\_final\_1.fastq.gz $(basename $2 .fastq.gz)\_trimmed.fastq.gz $(basename $2 .fastq.gz)unpaired\_final\_2.fastq.gz MINLEN:110 CROP:120 HEADCROP:10
+rm $(basename $1 .fastq.gz)\_paired\_1.fastq.gz $(basename $1 .fastq.gz)\_unpaired\_1.fastq.gz $(basename $2 .fastq.gz)\_paired\_2.fastq.gz $(basename $2 .fastq.gz)\_unpaired\_2.fastq.gz $(basename $1 .fastq.gz)unpaired\_final\_1.fastq.gz $(basename $2 .fastq.gz)unpaired\_final\_2.fastq.gz
